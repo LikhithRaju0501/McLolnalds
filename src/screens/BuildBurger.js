@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { Text, Button } from 'react-native-elements';
 import Spacer from '../components/Spacer';
 import ButtonsPart from '../components/ButtonsPart';
@@ -62,33 +63,34 @@ class BuildBurger extends Component {
   };
   render() {
     return (
-      <View>
-        <Text h3>Cost:{this.state.totalPrice}$</Text>
-        <Spacer />
-        <BurgerBun>
-          {this.state.ingredients.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{
-                  width: 150,
-                  height: 20,
-                  backgroundColor: item,
-                  marginLeft: 120,
-                  marginBottom: 10,
-                }}
-              />
-            );
-          })}
-        </BurgerBun>
-
-        <ButtonsPart
-          saladInc={this.saladInc}
-          disableRemove={this.state.totalPrice}
-          goTo={this.props.navigation.navigate}
-          finalIngredients={this.state.finalIngredients}
-        />
-      </View>
+      <ScrollView>
+        <View>
+          <Text h3>Cost:{this.state.totalPrice}$</Text>
+          <Spacer />
+          <BurgerBun>
+            {this.state.ingredients.map((item, index) => {
+              return (
+                <View
+                  key={index}
+                  style={{
+                    width: 150,
+                    height: 20,
+                    backgroundColor: item,
+                    marginLeft: 120,
+                    marginBottom: 10,
+                  }}
+                />
+              );
+            })}
+          </BurgerBun>
+          <ButtonsPart
+            saladInc={this.saladInc}
+            disableRemove={this.state.totalPrice}
+            goTo={this.props.navigation.navigate}
+            finalIngredients={this.state.finalIngredients}
+          />
+        </View>
+      </ScrollView>
     );
   }
 }
